@@ -1,0 +1,59 @@
+# MeNav 用户配置（放到自己 Fork 的仓库里：config/user/site.yml）
+# 加载规则：一旦存在 config/user/，MeNav 只读这套目录，且不再与默认配置合并，
+# 所以这里是一份"完整"的站点配置——缺的字段不会被默认值补齐。
+#
+# 想改的东西基本都在下面几行里：
+#   站点标题 / 你自己的 logo  -> title / logo_text / favicon
+#   每个书签的网站图标        -> icons.mode: favicon
+#   默认明暗                  -> theme.mode
+#   字体                      -> fonts
+
+title: '我的书签站'
+description: '收藏夹里的网站，一页看完'
+author: 'me'
+
+# favicon/logo 是"你自己的站"的图标，会从仓库 assets/ 目录取同名文件（默认 menav.svg）
+favicon: menav.svg
+logo_text: '我的书签站'
+
+icons:
+  # favicon：自动抓目标网站的图标（失败回退 Font Awesome 图标）；manual：只用手动图标，不外连
+  mode: favicon
+  # 国内访问 gstatic.com 慢的话保持 cn；海外可改 com
+  region: cn
+
+security:
+  allowedSchemes:
+    - http
+    - https
+    - mailto
+    - tel
+
+theme:
+  # dark | light | system；访客手动点右上角切换后会记住自己的选择
+  mode: dark
+
+fonts:
+  # source: css | google | system
+  source: css
+  cssUrl: 'https://fontsapi.zeoseven.com/292/main/result.css'
+  preload: true
+  family: LXGW WenKai
+  weight: normal
+
+profile:
+  # 首页（导航第一项）顶部的大标题 / 副标题
+  title: '我的书签站'
+  subtitle: '收藏夹里的网站，一页看完'
+
+social:
+  - name: GitHub
+    url: https://github.com
+    icon: fab fa-github
+
+navigation:
+  # 顺序 = 侧边栏顺序，第一项就是首页（默认打开页）
+  # id 必须与 pages/<id>.yml 文件名一致，下面这项对应 config/user/pages/bookmarks.yml
+  - name: 书签
+    icon: fas fa-bookmark
+    id: bookmarks
